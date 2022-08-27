@@ -1,18 +1,41 @@
 /* Navigation bar */
-.navbar-nav{
+.navbar-nav {
     display:flex;
     margin: 0 auto;
 }
 
 
 /* Welcome Page */
-.welcome{
+.welcome {
     margin: 3rem auto;
     width: 25rem;
     text-align: center;
 }
 
-.enter-btns{
+.enter-btns {
     margin: 2rem auto;
 }
+
+
+
+
+
+
+
+
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    height: 2rem;
+    font-size: 0.500rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+}
+
+
 
