@@ -1,0 +1,18 @@
+/* Navigation bar */
+.navbar-nav{
+    display:flex;
+    margin: 0 auto;
+}
+
+
+/* Welcome Page */
+.welcome{
+    margin: 3rem auto;
+    width: 25rem;
+    text-align: center;
+}
+
+.enter-btns{
+    margin: 2rem auto;
+}
+
