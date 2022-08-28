@@ -7,19 +7,28 @@
 
 /* Welcome Page */
 .welcome {
-    margin: 3rem auto;
+    margin: 5rem auto;
     width: 25rem;
     text-align: center;
 }
 
 .enter-btns {
     margin: 2rem auto;
+    display:flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 
+/* Register */
+.register-form{
+    width: 20rem;
+    margin: 5rem auto;
+}
 
-
-
+.cancel-button {
+    margin-top: 2rem;
+}
 
 
 
