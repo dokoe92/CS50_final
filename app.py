@@ -3,7 +3,7 @@ import sqlite3
 from flask import Flask, render_template, request, session, url_for, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import failure
+from helpers import failure, login_required
 
 
 app=Flask(__name__)
@@ -13,11 +13,14 @@ app.config["SECRET_KEY"] = "hallosecretkey"
 
 
 @app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
 
 
 @app.route("/welcome")
-def index():
-    return render_template("welcome.html")
+@login_required
+def welcome():
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
