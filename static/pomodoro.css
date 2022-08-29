@@ -8,8 +8,23 @@
     align-items: center;
 }
 
+.set-btns {
+    display: flex;
+    gap: 0.5rem;
+}
+
+
+
+
+
 .pomodoro-timer {
     padding: 2rem 2rem;
     font-size: 4rem;
     font-weight: bold;
+    display:flex;
+}
+
+.function-btns{
+    display: flex;
+    gap: 0.5rem;
 }
