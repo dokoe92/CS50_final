@@ -28,7 +28,6 @@ pause.addEventListener("click", function(){
 
 
 
-
-reset.addEventListener("click", fucntion(){
-
+reset.addEventListener("click", function(){
+    
 })
