@@ -13,14 +13,24 @@ app.config["SECRET_KEY"] = "hallosecretkey"
 
 
 @app.route("/", methods=["GET"])
+@login_required
 def index():
-    return render_template("index.html")
+    con = sqlite3.connect("timoro.db")
+    con.row_factory = sqlite3.Row
+    c = con.cursor()
+    user_id = session["user_id"]
+    user_info = c.execute("SELECT * FROM users WHERE id = ?", [user_id])
+    user_info = c.fetchone()
+
+    username = user_info["username"]
+    print(username)
+
+    return render_template("index.html", username=username)
 
 
 @app.route("/welcome")
-@login_required
 def welcome():
-    return render_template("index.html")
+    return render_template("welcome.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -87,8 +97,19 @@ def login():
         
     else:
         return render_template("login.html")
-        
 
+        
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/welcome")
+
+
+
+@app.route("/pomodoro")
+@login_required
+def pomodoro():
+    return render_template("pomodoro.html")
 
 
     
