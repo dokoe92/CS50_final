@@ -1,0 +1,15 @@
+
+.pomodoro-app {
+    width: 20rem;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pomodoro-timer {
+    padding: 2rem 2rem;
+    font-size: 4rem;
+    font-weight: bold;
+}

@@ -1,6 +1,6 @@
 import sqlite3
 
-from flask import Flask, render_template, request, session, url_for, redirect
+from flask import Flask, url_for, render_template, request, session,  redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import failure, login_required
@@ -10,6 +10,7 @@ app=Flask(__name__)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SECRET_KEY"] = "hallosecretkey"
+
 
 
 @app.route("/", methods=["GET"])
