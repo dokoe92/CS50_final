@@ -25,6 +25,7 @@ function timer(){
     else if (minutes.value != 0 && seconds.value == 0){
         seconds.value = 59;
         minutes.value--;
+        
     }
 }
 
@@ -47,10 +48,46 @@ pause.addEventListener("click", function(){
 })
 
 
-
 reset.addEventListener("click", function(){
     minutes.value = 00;
     seconds.value = 00;
     stopTimer();
 })
+
+
+set_pomodoro.addEventListener("click", function(){
+    stopTimer();
+    minutes.value = 25;
+    seconds.value = 00;
+    minutes.innerHTML = format(minutes);
+    seconds.innerHTML = format(seconds)
+
+})
+
+set_short_break.addEventListener("click", function(){
+    stopTimer();
+    minutes.value = 05;
+    seconds.value = 00;
+    minutes.innerHTML = format(minutes);
+    seconds.innerHTML = format(seconds)
+})
+
+set_long_break.addEventListener("click", function(){
+    stopTimer();
+    minutes.value = 15;
+    seconds.value = 00;
+    minutes.innerHTML = format(minutes);
+    seconds.innerHTML = format(seconds)
+})
+
+
+
+
+//helpers//
+function format(input){
+    if(input.value.length == 1){
+        return input.value = "0" + input.value;
+    }
+    else return input.value
+}
 
