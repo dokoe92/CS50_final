@@ -1,5 +1,5 @@
 
-.pomodoro-app {
+#pomodoro-app {
     width: 20rem;
     margin: 5rem auto;
     display: flex;
@@ -24,7 +24,31 @@
     display:flex;
 }
 
-.function-btns{
-    display: flex;
-    gap: 0.5rem;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#minutes {
+    border: 0;
+    width: 5rem;
+    outline: none
+}
+
+#minutes:active{
+    border: none;
+    outline: none;
+}
+
+#seconds {
+    border: 0;
+    width: 5rem;
+    outline: none
+}
+
+#seconds:active {
+    border:none;
+    outline: none;
 }

@@ -6,32 +6,31 @@
 {% endblock %}
 
 {% block main%}
-<div class="pomodoro-app">
+<div id="pomodoro-app">
     <div class="set-btns">
-        <button class="set_pomodoro">Pomodoro</button>
-        <button class="set_short_break">Short Break</button>
-        <button class="set_long_break">Long Break</button>
+        <button id="set_pomodoro">Pomodoro</button>
+        <button id="set_short_break">Short Break</button>
+        <button id="set_long_break">Long Break</button>
     </div>
     <div class="pomodoro-timer">
-        <p class="minutes">25</p><P>:</P><p class="seconds">00</p>
+        <input type="number" id="minutes" min="00" max="25" value="25"readonly><P>:</P>
+        <input type="number" id="seconds" min="00" max="59" value="00"readonly>
     </div>
-    <div class="function-btns">
+    <div class="set-btns">
         <div class="pomodoro-start">
-            <button class="start">Start</button>
+            <button id="start">Start</button>
         </div>
         <div class="pomodoro-start">
-            <button class="pause">Pause</button>
+            <button id="pause">Pause</button>
         </div>
         <div class="pomodoro-reset">
-            <button class="reset">Reset</button>
+            <button id="reset">Reset</button>
         </div>
     </div>
-
-
 </div>
 
 
 
-
+<script src="{{ url_for('static', filename='pomodoro.js') }}"></script> 
 {% endblock %}
 

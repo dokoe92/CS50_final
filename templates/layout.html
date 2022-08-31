@@ -14,30 +14,30 @@
 
 
     <title>Timoro: {% block title %}{% endblock %}</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/pomodoro">Pomodoro</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="todo.html">ToDo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productivity.html">Productivity</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="history.html">History</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-            </form>
-          </ul>
-        </div>
-      </nav>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/pomodoro">Pomodoro</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="todo.html">ToDo</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="productivity.html">Productivity</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="history.html">History</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                </form>
+              </ul>
+            </div>
+          </nav>
 
 
       <footer class="bg-dark ">
@@ -49,9 +49,6 @@
     {% block main %}{% endblock %}
 
 
-    {% if request.endpoint == "pomodoro" %}
-      <script src="{{ url_for('static', filename='pomodoro.js') }}"></script> 
-    {% endif %}
 
-</body>
+  </body>
 </html>
