@@ -21,11 +21,12 @@ function timer(){
     }
     else if (seconds.value != 0){
         seconds.value--;
+        seconds.innterHTML = format(seconds);
     }
     else if (minutes.value != 0 && seconds.value == 0){
         seconds.value = 59;
         minutes.value--;
-        
+        minutes.innerHTML = format(minutes);
     }
 }
 
@@ -44,15 +45,9 @@ start.addEventListener("click", function(){
 })
 
 pause.addEventListener("click", function(){
-
-})
-
-
-reset.addEventListener("click", function(){
-    minutes.value = 00;
-    seconds.value = 00;
     stopTimer();
 })
+
 
 
 set_pomodoro.addEventListener("click", function(){
@@ -60,7 +55,14 @@ set_pomodoro.addEventListener("click", function(){
     minutes.value = 25;
     seconds.value = 00;
     minutes.innerHTML = format(minutes);
-    seconds.innerHTML = format(seconds)
+    seconds.innerHTML = format(seconds);
+    reset.addEventListener("click", function(){
+        minutes.value = 25;
+        seconds.value = 00;
+        minutes.innerHTML = format(minutes);
+        seconds.innerHTML = format(seconds);
+        stopTimer();
+    })
 
 })
 
@@ -69,7 +71,14 @@ set_short_break.addEventListener("click", function(){
     minutes.value = 05;
     seconds.value = 00;
     minutes.innerHTML = format(minutes);
-    seconds.innerHTML = format(seconds)
+    seconds.innerHTML = format(seconds);
+    reset.addEventListener("click", function(){
+        minutes.value = 05;
+        seconds.value = 00;
+        minutes.innerHTML = format(minutes);
+        seconds.innerHTML = format(seconds);
+        stopTimer();
+    })
 })
 
 set_long_break.addEventListener("click", function(){
@@ -77,7 +86,14 @@ set_long_break.addEventListener("click", function(){
     minutes.value = 15;
     seconds.value = 00;
     minutes.innerHTML = format(minutes);
-    seconds.innerHTML = format(seconds)
+    seconds.innerHTML = format(seconds);
+    reset.addEventListener("click", function(){
+        minutes.value = 15;
+        seconds.value = 00;
+        minutes.innerHTML = format(minutes);
+        seconds.innerHTML = format(seconds);
+        stopTimer();
+    })
 })
 
 
