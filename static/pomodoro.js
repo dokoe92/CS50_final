@@ -13,12 +13,22 @@ var seconds = document.getElementById("seconds");
 
 // store a reference to the variable
 var startTimer = null;
+var pomodoro_counter = 0;
+var pomodoro_true = true;
 
 function timer(){
     if (minutes.value == 0 && seconds.value == 0){
         minutes.value = 0;
         seconds.value = 0;
+        minutes.innerHTML = format(minutes);
+        seconds.innerHTML = format(seconds);
+        if (pomodoro_true == true){
+            pomodoro_counter++;
+            clearInterval(startTimer);
+            send_pomodoro_backend();
+        }
     }
+    
     else if (seconds.value != 0){
         seconds.value--;
         seconds.innterHTML = format(seconds);
@@ -46,6 +56,7 @@ start.addEventListener("click", function(){
 
 pause.addEventListener("click", function(){
     stopTimer();
+    pomodoro_counter++;
 })
 
 
@@ -54,6 +65,7 @@ set_pomodoro.addEventListener("click", function(){
     stopTimer();
     minutes.value = 25;
     seconds.value = 00;
+    pomodoro_true = true;
     minutes.innerHTML = format(minutes);
     seconds.innerHTML = format(seconds);
     reset.addEventListener("click", function(){
@@ -70,6 +82,7 @@ set_short_break.addEventListener("click", function(){
     stopTimer();
     minutes.value = 05;
     seconds.value = 00;
+    pomodoro_true = false;
     minutes.innerHTML = format(minutes);
     seconds.innerHTML = format(seconds);
     reset.addEventListener("click", function(){
@@ -85,6 +98,7 @@ set_long_break.addEventListener("click", function(){
     stopTimer();
     minutes.value = 15;
     seconds.value = 00;
+    pomodoro_true = false;
     minutes.innerHTML = format(minutes);
     seconds.innerHTML = format(seconds);
     reset.addEventListener("click", function(){
@@ -97,8 +111,6 @@ set_long_break.addEventListener("click", function(){
 })
 
 
-
-
 //helpers//
 function format(input){
     if(input.value.length == 1){
@@ -107,3 +119,17 @@ function format(input){
     else return input.value
 }
 
+
+//Send JSON of pomodoro_counter to Python with AJAX
+function send_pomodoro_backend() {
+    const dict_values = {pomodoro_counter}
+    const s = JSON.stringify(dict_values);
+    console.log(s)
+
+    $.ajax({
+        url:"/pomodoro",
+        type:"POST",
+        contentType: "application/json",
+        data: JSON.stringify(s)
+    })
+}

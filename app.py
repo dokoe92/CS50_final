@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 from flask import Flask, url_for, render_template, request, session,  redirect
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -24,7 +25,6 @@ def index():
     user_info = c.fetchone()
 
     username = user_info["username"]
-    print(username)
 
     return render_template("index.html", username=username)
 
@@ -107,10 +107,19 @@ def logout():
 
 
 
-@app.route("/pomodoro")
+@app.route("/pomodoro", methods=["GET", "POST"])
 @login_required
 def pomodoro():
-    return render_template("pomodoro.html")
+    if request.method == "POST":
+        output = request.get_json()
+        print("output: ", output)
+        print(type(output))
+        result = json.loads(output)
+        print("result: ",result)
+        print(type(result))
+        return result
+    else:
+        return render_template("pomodoro.html")
 
 
     
