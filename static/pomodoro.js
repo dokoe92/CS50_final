@@ -15,6 +15,9 @@ var seconds = document.getElementById("seconds");
 var startTimer = null;
 var pomodoro_counter = 0;
 var pomodoro_true = true;
+var click_count = 0;
+var timer_sound = new Audio("static/Analog-alarm-clock-bell-rings-short-sound-effect.mp3");
+
 
 function timer(){
     if (minutes.value == 0 && seconds.value == 0){
@@ -24,8 +27,10 @@ function timer(){
         seconds.innerHTML = format(seconds);
         if (pomodoro_true == true){
             pomodoro_counter++;
-            clearInterval(startTimer);
+            stopTimer();
             send_pomodoro_backend();
+            pomodoro_counter = 0;
+            timer_sound.play();
         }
     }
     
@@ -44,21 +49,33 @@ function stopTimer(){
     clearInterval(startTimer);
 }
 
+
+// Add eventlisteners to buttons
 start.addEventListener("click", function(){
     //initialize the variable startTimer
-    function startInterval(){
-        startTimer = setInterval(function(){
-            timer();
-        }, 1000)
+    if (click_count == 0){
+        click_count = 1;
+        function startInterval(){
+            startTimer = setInterval(function(){
+                timer();
+            }, 1000)
+        }
+        startInterval()
     }
-    startInterval()
 })
 
 pause.addEventListener("click", function(){
     stopTimer();
-    pomodoro_counter++;
+    click_count = 0;
 })
 
+reset.addEventListener("click", function(){
+    stopTimer();
+    minutes.value = 25;
+    seconds.value = 00;
+    minutes.innerHTML = format(minutes);
+    seconds.innerHTML = format(seconds);
+})
 
 
 set_pomodoro.addEventListener("click", function(){
@@ -69,6 +86,7 @@ set_pomodoro.addEventListener("click", function(){
     minutes.innerHTML = format(minutes);
     seconds.innerHTML = format(seconds);
     reset.addEventListener("click", function(){
+        click_count = 0;
         minutes.value = 25;
         seconds.value = 00;
         minutes.innerHTML = format(minutes);
@@ -86,6 +104,7 @@ set_short_break.addEventListener("click", function(){
     minutes.innerHTML = format(minutes);
     seconds.innerHTML = format(seconds);
     reset.addEventListener("click", function(){
+        click_count = 0;
         minutes.value = 05;
         seconds.value = 00;
         minutes.innerHTML = format(minutes);
@@ -102,6 +121,7 @@ set_long_break.addEventListener("click", function(){
     minutes.innerHTML = format(minutes);
     seconds.innerHTML = format(seconds);
     reset.addEventListener("click", function(){
+        click_count = 0;
         minutes.value = 15;
         seconds.value = 00;
         minutes.innerHTML = format(minutes);
@@ -111,14 +131,13 @@ set_long_break.addEventListener("click", function(){
 })
 
 
-//helpers//
+//helpers
 function format(input){
     if(input.value.length == 1){
         return input.value = "0" + input.value;
     }
     else return input.value
 }
-
 
 //Send JSON of pomodoro_counter to Python with AJAX
 function send_pomodoro_backend() {

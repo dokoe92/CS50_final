@@ -1,5 +1,6 @@
 import sqlite3
 import json
+import datetime
 
 from flask import Flask, url_for, render_template, request, session,  redirect
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -11,7 +12,6 @@ app=Flask(__name__)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SECRET_KEY"] = "hallosecretkey"
-
 
 
 @app.route("/", methods=["GET"])
@@ -111,12 +111,24 @@ def logout():
 @login_required
 def pomodoro():
     if request.method == "POST":
+        con = sqlite3.connect("timoro.db")
+        con.row_factory = sqlite3.Row
+        c = con.cursor()
         output = request.get_json()
         print("output: ", output)
         print(type(output))
         result = json.loads(output)
         print("result: ",result)
         print(type(result))
+        pomodoro_counter = result["pomodoro_counter"]
+        print(pomodoro_counter)
+        if pomodoro_counter > 0:
+            user_id = session["user_id"]
+            c.execute("INSERT INTO pomodoro (pomodoro_counter, user_id, date) VALUES (?, ?, ?)", [pomodoro_counter, user_id, datetime.date.today()])
+            con.commit() 
+
+
+
         return result
     else:
         return render_template("pomodoro.html")
