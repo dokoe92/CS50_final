@@ -31,6 +31,12 @@ function timer(){
             send_pomodoro_backend();
             pomodoro_counter = 0;
             timer_sound.play();
+            alert("Pomodoro finished!");
+        }
+        if (pomodoro_true == false) {
+            stopTimer();
+            timer_sound.play();
+            alert("Pause finished!");
         }
     }
     
