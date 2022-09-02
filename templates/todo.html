@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    ToDo
+{% endblock %}
+
+{% block main%}
+<div id="todo-list">
+    <div id="add_todo">
+        <input id="new_todo" type="text">
+        <button id="submit_todo">Add ToDo</button>
+    </div>
+    <div id="todo-field">
+    </div>
+</div>
+
+
+
+
+<script src="{{ url_for('static', filename='todo.js') }}"></script> 
+{% endblock %}
+

@@ -1,0 +1,29 @@
+#todo-list {
+
+    margin: 5rem auto;
+    width: 20rem;
+}
+
+#add_todo{
+    display: flex;
+    flex-direction: row;;
+    justify-content:space-between;
+}
+
+#add_todo input{
+    width: 65%;
+}
+
+#add_todo button{
+    width: 30%;
+}
+
+#todo-field{
+    margin-top: 1rem;
+}
+
+
+.task{
+    background-color: yellow;
+}
+

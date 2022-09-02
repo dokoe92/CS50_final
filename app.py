@@ -131,7 +131,7 @@ def pomodoro():
         return render_template("pomodoro.html")
 
 
-@app.route("todo", methods=["GET", "POST"])
+@app.route("/todo", methods=["GET", "POST"])
 @login_required
 def todo():
     return render_template("todo.html")

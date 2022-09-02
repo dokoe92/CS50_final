@@ -16,6 +16,9 @@
     {% if request.endpoint == "pomodoro" %}
       <link rel="stylesheet" href="{{ url_for('static', filename='pomodoro.css') }}">
     {% endif %}
+    {% if request.endpoint == "todo" %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='todo.css') }}">
+    {% endif %}
 
 
 
@@ -29,7 +32,7 @@
                   <a class="nav-link" href="/pomodoro">Pomodoro</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="todo.html">ToDo</a>
+                  <a class="nav-link" href="/todo">ToDo</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="productivity.html">Productivity</a>
