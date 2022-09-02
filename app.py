@@ -140,9 +140,19 @@ def todo():
         c = con.cursor()
         output = request.get_json()
         result = json.loads(output)
-        print("result: ", result)
+        print(result)
+        task = result["task"]
+
+        # Insert task into database
+        user_id = session["user_id"]
+        c.execute("INSERT INTO todo (task, date, user_id) VALUES (?, ?, ?)", [task, datetime.date.today(), user_id])
+        con.commit()
+
         return result
     else:
+        
+
+
         return render_template("todo.html")
 
 
