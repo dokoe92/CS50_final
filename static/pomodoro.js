@@ -77,6 +77,7 @@ pause.addEventListener("click", function(){
 
 reset.addEventListener("click", function(){
     stopTimer();
+    click_count = 0;
     minutes.value = 25;
     seconds.value = 00;
     minutes.innerHTML = format(minutes);
