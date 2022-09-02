@@ -12,6 +12,13 @@
         <button id="submit_todo">Add ToDo</button>
     </div>
     <div id="todo-field">
+        {% for task in tasks %}
+        <div class="task">
+            {{ task }}
+            <span class="close">&#215;</span>
+        </div>
+        {% endfor %}
+
     </div>
 </div>
 

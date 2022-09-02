@@ -19,9 +19,10 @@ submit_todo.addEventListener("click", function(){
     span.className = "close";
     span.appendChild(txt);
     el.append(span);
-
 })
 
+//add  delete button for files from database!
+//think about logic to delete files from database when clicked on delete button!
 
 
 

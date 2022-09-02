@@ -134,26 +134,32 @@ def pomodoro():
 @app.route("/todo", methods=["GET", "POST"])
 @login_required
 def todo():
+    con = sqlite3.connect("timoro.db")
+    con.row_factory = sqlite3.Row
+    c = con.cursor()   
+    user_id = session["user_id"]
     if request.method == "POST":
-        con = sqlite3.connect("timoro.db")
-        con.row_factory = sqlite3.Row
-        c = con.cursor()
         output = request.get_json()
         result = json.loads(output)
         print(result)
         task = result["task"]
 
         # Insert task into database
-        user_id = session["user_id"]
+        
         c.execute("INSERT INTO todo (task, date, user_id) VALUES (?, ?, ?)", [task, datetime.date.today(), user_id])
         con.commit()
 
+
         return result
     else:
-        
+        c.execute ("SELECT task FROM todo WHERE user_id = ?", [user_id])
+        db_tasks = c.fetchall()     
+        tasks = []
+        for task in db_tasks:
+            tasks.append(task["task"])
+        print(tasks)
 
-
-        return render_template("todo.html")
+        return render_template("todo.html", tasks=tasks)
 
 
     
