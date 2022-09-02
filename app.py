@@ -134,7 +134,16 @@ def pomodoro():
 @app.route("/todo", methods=["GET", "POST"])
 @login_required
 def todo():
-    return render_template("todo.html")
+    if request.method == "POST":
+        con = sqlite3.connect("timoro.db")
+        con.row_factory = sqlite3.Row
+        c = con.cursor()
+        output = request.get_json()
+        result = json.loads(output)
+        print("result: ", result)
+        return result
+    else:
+        return render_template("todo.html")
 
 
     
