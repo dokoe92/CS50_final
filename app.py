@@ -126,12 +126,15 @@ def pomodoro():
             user_id = session["user_id"]
             c.execute("INSERT INTO pomodoro (pomodoro_counter, user_id, date) VALUES (?, ?, ?)", [pomodoro_counter, user_id, datetime.date.today()])
             con.commit() 
-
-
-
         return result
     else:
         return render_template("pomodoro.html")
+
+
+@app.route("todo", methods=["GET", "POST"])
+@login_required
+def todo():
+    return render_template("todo.html")
 
 
     
